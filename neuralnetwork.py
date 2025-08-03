@@ -1,11 +1,21 @@
-import numpy as np
 import random
-def sigmoid(x):
-    return 1 / (1 + 2.71828182845904 ** -x)
-input1 = np.array([1,0,1,0])
-input2 = np.array([0,1,0,1])
+def sigmoid(sum):
+    return 1 / (1 + 2.7183 ** -sum)
+X = -1
+y = 1
+b = 0.1
+w = random.uniform(-1,1)
+learning_rate = 0.01 
 
-weight1 = round(random.uniform(0, 1), 1)
-weight2 = round(random.uniform(0, 1), 1)
-output = sigmoid(input1 * weight1 + input2 * weight2)
-print(output)
+for i in range(200):
+    y_pred = sigmoid(w * X + b)
+
+    loss = (y_pred - y) ** 2
+
+    w = w - learning_rate * loss * X
+    b = b - learning_rate * loss
+print(loss)
+
+y_pred = sigmoid(w * X + b)
+print(f"Prediction: {y_pred}")
+print(f"Current w: {w}, Current b: {b}")
